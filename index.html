@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>博洛克机械 - 专业注塑机制造商</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind 配置 -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#1E40AF',      // 工业蓝
+            secondary: '#1F2937',    // 深灰
+            accent: '#F97316',       // 橙色强调
+            light: '#F3F4F6',        // 浅灰背景
+            'primary-light': '#3B82F6' // 浅蓝色
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      }
+    }
+  </script>
+  
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+      .text-shadow {
+        text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      }
+      .transition-transform {
+        transition-property: transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 300ms;
+      }
+      .scrollbar-hide::-webkit-scrollbar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body class="font-inter text-secondary bg-white">
+  <!-- 导航栏 -->
+  <header id="navbar" class="fixed w-full z-50 transition-all duration-300 bg-white/95 shadow-md">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center py-4">
+        <!-- Logo -->
+        <a href="#home" class="flex items-center space-x-2">
+          <div class="w-10 h-10 bg-primary rounded-md flex items-center justify-center">
+            <span class="text-white font-bold text-xl">B</span>
+          </div>
+          <span class="text-xl font-bold text-primary">博洛克机械</span>
+        </a>
+        
+        <!-- 桌面导航 -->
+        <nav class="hidden md:flex space-x-8">
+          <a href="#home" class="nav-link font-medium hover:text-primary transition-colors">首页</a>
+          <a href="#about" class="nav-link font-medium hover:text-primary transition-colors">企业介绍</a>
+          <a href="#products" class="nav-link font-medium hover:text-primary transition-colors">产品中心</a>
+          <a href="#tech" class="nav-link font-medium hover:text-primary transition-colors">技术支持</a>
+          <a href="#contact" class="nav-link font-medium hover:text-primary transition-colors">联系方式</a>
+        </nav>
+        
+        <!-- 联系按钮 -->
+        <a href="#contact" class="hidden md:inline-flex items-center px-5 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">
+          <i class="fa fa-phone mr-2"></i> 联系我们
+        </a>
+        
+        <!-- 移动端菜单按钮 -->
+        <button id="menu-toggle" class="md:hidden text-secondary text-2xl">
+          <i class="fa fa-bars"></i>
+        </button>
+      </div>
+    </div>
+    
+    <!-- 移动端导航菜单 -->
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+      <div class="container mx-auto px-4 py-3 space-y-3">
+        <a href="#home" class="block py-2 hover:text-primary transition-colors">首页</a>
+        <a href="#about" class="block py-2 hover:text-primary transition-colors">企业介绍</a>
+        <a href="#products" class="block py-2 hover:text-primary transition-colors">产品中心</a>
+        <a href="#tech" class="block py-2 hover:text-primary transition-colors">技术支持</a>
+        <a href="#contact" class="block py-2 hover:text-primary transition-colors">联系方式</a>
+        <a href="#contact" class="block w-full text-center px-5 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">
+          <i class="fa fa-phone mr-2"></i> 联系我们
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 首页 Banner -->
+  <section id="home" class="pt-20 bg-gradient-to-r from-primary to-primary-light text-white">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24">
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-10 md:mb-0">
+          <h1 class="text-[clamp(2rem,5vw,3.5rem)] font-bold leading-tight text-shadow mb-6">
+            稳定中蕴含超凡动力
+          </h1>
+          <p class="text-[clamp(1rem,2vw,1.25rem)] text-white/90 mb-8 max-w-lg">
+            博洛克专注于高品质注塑机研发与制造，以精密技术为基础，为各行业提供高效、节能、可靠的解决方案。
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="#products" class="px-6 py-3 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors text-center">
+              查看产品系列
+            </a>
+            <a href="#contact" class="px-6 py-3 bg-white/10 backdrop-blur-sm text-white border border-white/30 rounded-md hover:bg-white/20 transition-colors text-center">
+              咨询技术详情
+            </a>
+          </div>
+        </div>
+        <div class="md:w-1/2">
+          <img src="pics/machinehomepage.png" alt="博洛克注塑机" class="rounded-lg shadow-2xl w-full h-auto object-cover transform hover:scale-[1.02] transition-transform duration-500">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 核心优势 -->
+  <section class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">博洛克核心优势</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">我们致力于为客户提供高品质的注塑机产品，以先进技术和可靠性能赢得市场认可</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 优势 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-cogs text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">精密快速稳定</h3>
+          <p class="text-gray-600">采用高精度线性导轨和伺服系统，确保注塑过程的稳定性和精确度，满足高要求产品生产需求。</p>
+        </div>
+        
+        <!-- 优势 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-leaf text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">高效节能</h3>
+          <p class="text-gray-600">领先的节能技术设计，比传统机型能耗降低20-30%，为企业降低生产成本，实现绿色生产。</p>
+        </div>
+        
+        <!-- 优势 3 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-shield text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">耐用可靠</h3>
+          <p class="text-gray-600">关键部件采用进口材料，经过严格测试和质量控制，确保设备长期稳定运行，减少停机时间。</p>
+        </div>
+        
+        <!-- 优势 4 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-sitemap text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">适用范围广</h3>
+          <p class="text-gray-600">全系列机型覆盖不同锁模力需求，可广泛应用于汽车、家电、医疗、通讯等多个行业领域。</p>
+        </div>
+        
+        <!-- 优势 5 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-user text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">人性化设计</h3>
+          <p class="text-gray-600">操作界面简洁直观，易于上手；维护空间合理布局，方便日常保养和故障排除，降低操作难度。</p>
+        </div>
+        
+        <!-- 优势 6 -->
+        <div class="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-sliders text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">定制化服务</h3>
+          <p class="text-gray-600">可根据客户特定需求，提供定制化解决方案，满足特殊产品的生产要求，提升生产效率。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品推荐 -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">重点产品推荐</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">博洛克全系列注塑机产品，满足不同行业、不同规格的生产需求</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 产品 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/119/600/400" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-accent text-white text-sm px-3 py-1 rounded-full">
+              热销产品
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BLOC1500 注塑机</h3>
+            <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 1500kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-weight text-primary mr-2"></i>
+                <span>注射重量: 320g</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6">适用于中小型塑件生产，性能稳定，能耗低，广泛应用于电子、玩具等行业。</p>
+            <a href="#products" class="inline-flex items-center text-primary font-medium hover:text-primary-light transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 产品 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/133/600/400" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BLOC2300 注塑机</h3>
+            <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 2300kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-weight text-primary mr-2"></i>
+                <span>注射重量: 580g</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6">中型注塑机，高性价比之选，适用于家电、汽车零部件等中等尺寸塑件生产。</p>
+            <a href="#products" class="inline-flex items-center text-primary font-medium hover:text-primary-light transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+        
+        <!-- 产品 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/175/600/400" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+              专用机型
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">热固性塑料专用机</h3>
+            <div class="flex flex-wrap gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 1800-3500kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-fire text-primary mr-2"></i>
+                <span>高温适配</span>
+              </div>
+            </div>
+            <p class="text-gray-600 mb-6">专为热固性塑料设计，精确控制温度和压力，适用于电器绝缘件等特殊产品生产。</p>
+            <a href="#products" class="inline-flex items-center text-primary font-medium hover:text-primary-light transition-colors">
+              查看详情 <i class="fa fa-arrow-right ml-2"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-center mt-12">
+        <a href="#products" class="inline-flex items-center px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+          查看全部产品 <i class="fa fa-long-arrow-right ml-2"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 应用领域 -->
+  <section class="py-16 bg-light overflow-hidden">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">广泛的应用领域</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">博洛克注塑机产品已成功应用于多个行业，为客户创造价值</p>
+      </div>
+      
+      <div class="relative">
+        <div class="flex space-x-6 overflow-x-auto pb-8 scrollbar-hide snap-x">
+          <!-- 应用领域 1 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-car text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">汽车行业</h3>
+            <p class="text-gray-600">生产汽车内饰件、外饰件、功能性部件等，满足汽车工业高标准要求。</p>
+          </div>
+          
+          <!-- 应用领域 2 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-television text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">家电行业</h3>
+            <p class="text-gray-600">制造各类家电外壳、内部结构件，提供高精度、高光泽的表面质量。</p>
+          </div>
+          
+          <!-- 应用领域 3 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-medkit text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">医疗行业</h3>
+            <p class="text-gray-600">生产医疗设备部件、一次性医疗用品，符合医疗级卫生标准要求。</p>
+          </div>
+          
+          <!-- 应用领域 4 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-mobile text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">通讯行业</h3>
+            <p class="text-gray-600">制造手机外壳、通讯设备部件，满足高精度装配和外观要求。</p>
+          </div>
+          
+          <!-- 应用领域 5 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-child text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">玩具行业</h3>
+            <p class="text-gray-600">生产各类塑料玩具，提供安全、环保的生产解决方案，满足玩具行业标准。</p>
+          </div>
+          
+          <!-- 应用领域 6 -->
+          <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
+            <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+              <i class="fa fa-cube text-primary text-2xl"></i>
+            </div>
+            <h3 class="text-lg font-semibold mb-2">包装行业</h3>
+            <p class="text-gray-600">制造各类塑料包装容器、瓶盖等产品，提供高效稳定的生产保障。</p>
+          </div>
+        </div>
+        
+        <!-- 滚动提示 -->
+        <div class="hidden md:block absolute top-1/2 left-0 -translate-y-1/2 transform -translate-x-4">
+          <button class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+            <i class="fa fa-angle-left"></i>
+          </button>
+        </div>
+        <div class="hidden md:block absolute top-1/2 right-0 -translate-y-1/2 transform translate-x-4">
+          <button class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+            <i class="fa fa-angle-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 服务保障 -->
+  <section class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">全方位服务保障</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">我们不仅提供高品质的产品，更提供专业的技术支持和完善的售后服务</p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- 服务 1 -->
+        <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-headphones text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">24小时网络服务</h3>
+          <p class="text-gray-600">全天候在线技术支持，快速响应客户需求，远程协助解决设备运行中的问题，减少停机时间。</p>
+        </div>
+        
+        <!-- 服务 2 -->
+        <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-cubes text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">快速配件供应</h3>
+          <p class="text-gray-600">完善的配件库存管理系统，确保常用配件快速供应，缩短设备维修周期，保障生产连续性。</p>
+        </div>
+        
+        <!-- 服务 3 -->
+        <div class="bg-white p-8 rounded-lg shadow-md border-t-4 border-primary hover:shadow-lg transition-shadow">
+          <div class="w-14 h-14 bg-primary/10 rounded-full flex items-center justify-center mb-6">
+            <i class="fa fa-graduation-cap text-primary text-2xl"></i>
+          </div>
+          <h3 class="text-xl font-semibold mb-3">专业技术培训</h3>
+          <p class="text-gray-600">提供设备操作、维护保养等专业培训，帮助客户掌握设备使用技巧，提高生产效率和设备寿命。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 企业介绍 -->
+  <section id="about" class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">关于博洛克</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">专注于注塑机研发与制造，以专业品质赢得客户信赖</p>
+      </div>
+      
+      <div class="flex flex-col lg:flex-row gap-12 items-center">
+        <div class="lg:w-1/2">
+          <img src="https://picsum.photos/id/28/800/600" alt="博洛克生产基地" class="rounded-lg shadow-lg w-full h-auto">
+        </div>
+        <div class="lg:w-1/2">
+          <h3 class="text-2xl font-semibold mb-4">品牌故事</h3>
+          <p class="text-gray-600 mb-6">博洛克成立于2008年，是一家专注于高品质注塑机研发、生产和销售的高新技术企业。公司秉承"专业铸就品质，细节成就口碑"的经营理念，致力于为客户提供高效、节能、精密的注塑解决方案。</p>
+          
+          <h3 class="text-2xl font-semibold mb-4">企业理念</h3>
+          <p class="text-gray-600 mb-6">我们坚持"精密源于集成"的生产理念，将先进技术与精密制造相结合，每一台设备都经过严格的质量控制和性能测试。同时，我们秉持"尽100%的努力为1%的用户解决不同产品的功能需求"的服务宗旨，为客户提供定制化解决方案。</p>
+          
+          <h3 class="text-2xl font-semibold mb-4">生产实力</h3>
+          <p class="text-gray-600">公司拥有现代化生产基地和专业的技术团队，引进国际先进的生产设备和检测仪器，实现了从零部件加工到整机装配的全流程质量控制。我们注重员工专业技能培训，确保每一个生产环节都精益求精。</p>
+        </div>
+      </div>
+      
+      <!-- 发展历程 -->
+      <div class="mt-20">
+        <h3 class="text-2xl font-semibold text-center mb-12">发展历程</h3>
+        <div class="relative">
+          <!-- 时间轴中心线 -->
+          <div class="absolute left-0 md:left-1/2 top-0 bottom-0 w-0.5 bg-primary/20 transform md:-translate-x-1/2"></div>
+          
+          <!-- 历程 1 -->
+          <div class="relative mb-12">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0 md:text-right">
+                <h4 class="text-xl font-semibold mb-2">2008年</h4>
+                <p class="text-gray-600">博洛克品牌创立，专注于中小型注塑机研发与生产</p>
+              </div>
+              <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2"></div>
+              <div class="md:w-1/2 md:pl-12"></div>
+            </div>
+          </div>
+          
+          <!-- 历程 2 -->
+          <div class="relative mb-12">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-12"></div>
+              <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2"></div>
+              <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
+                <h4 class="text-xl font-semibold mb-2">2012年</h4>
+                <p class="text-gray-600">推出全系列伺服节能注塑机，获得市场广泛认可</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 历程 3 -->
+          <div class="relative mb-12">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                <h4 class="text-xl font-semibold mb-2">2016年</h4>
+                <p class="text-gray-600">扩建新生产基地，引入自动化生产线，产能提升50%</p>
+              </div>
+              <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2"></div>
+              <div class="md:w-1/2 md:pl-12"></div>
+            </div>
+          </div>
+          
+          <!-- 历程 4 -->
+          <div class="relative mb-12">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-12"></div>
+              <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2"></div>
+              <div class="md:w-1/2 md:pl-12 mb-6 md:mb-0">
+                <h4 class="text-xl font-semibold mb-2">2020年</h4>
+                <p class="text-gray-600">研发成功热固性塑料专用机，拓展产品应用领域</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 历程 5 -->
+          <div class="relative">
+            <div class="flex flex-col md:flex-row items-center">
+              <div class="md:w-1/2 md:pr-12 md:text-right mb-6 md:mb-0">
+                <h4 class="text-xl font-semibold mb-2">至今</h4>
+                <p class="text-gray-600">持续创新，为全球客户提供高品质注塑机及解决方案，产品出口多个国家和地区</p>
+              </div>
+              <div class="absolute left-0 md:left-1/2 w-6 h-6 bg-primary rounded-full transform md:-translate-x-1/2"></div>
+              <div class="md:w-1/2 md:pl-12"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品页 -->
+  <section id="products" class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">产品中心</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">全系列注塑机产品，满足不同行业、不同规格的生产需求</p>
+      </div>
+      
+      <!-- 产品分类 -->
+      <div class="mb-12">
+        <div class="flex flex-wrap justify-center gap-4">
+          <button class="px-6 py-2 bg-primary text-white rounded-full">全系列产品</button>
+          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">标准注塑机</button>
+          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">热固性专用机</button>
+          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">BMC专用机</button>
+          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">PET系列</button>
+          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">UPVC系列</button>
+        </div>
+      </div>
+      
+      <!-- 产品筛选 -->
+      <div class="bg-light p-6 rounded-lg mb-10">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
+          <div>
+            <label class="block text-gray-700 mb-2">锁模力范围</label>
+            <select id="filter-lock" class="w-full p-2 border border-gray-300 rounded-md">
+              <option value="all">全部范围</option>
+              <option value="0-1500">0 - 1500 kN</option>
+              <option value="1500-2500">1500 - 2500 kN</option>
+              <option value="2500-5000">2500 - 5000 kN</option>
+              <option value="5000-999999">5000+ kN</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">注射重量</label>
+            <select id="filter-weight" class="w-full p-2 border border-gray-300 rounded-md">
+              <option value="all">全部范围</option>
+              <option value="0-300">0 - 300 g</option>
+              <option value="300-600">300 - 600 g</option>
+              <option value="600-999999">600+ g</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-gray-700 mb-2">应用行业</label>
+            <select id="filter-industry" class="w-full p-2 border border-gray-300 rounded-md">
+              <option value="all">全部行业</option>
+              <option value="电子">电子</option>
+              <option value="家电">家电</option>
+              <option value="汽车">汽车</option>
+              <option value="包装">包装</option>
+              <option value="医疗">医疗</option>
+            </select>
+          </div>
+          <div class="flex gap-3">
+            <button id="filter-btn" class="ml-auto px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+              <i class="fa fa-filter mr-2"></i> 筛选
+            </button>
+            <button id="clear-btn" class="px-6 py-2 border rounded-md">清除</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 产品列表 -->
+      <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- 产品 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1500" data-lock-max="1500" data-weight-min="320" data-weight-max="320" data-industry="电子,玩具">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/119/600/400" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BLOC1500 注塑机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 1500kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-weight text-primary mr-2"></i>
+                <span>注射重量: 320g</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 170MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>电子、玩具</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2300" data-lock-max="2300" data-weight-min="580" data-weight-max="580" data-industry="家电,汽车">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/133/600/400" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BLOC2300 注塑机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 2300kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-weight text-primary mr-2"></i>
+                <span>注射重量: 580g</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 160MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>家电、汽车</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1800" data-lock-max="3500" data-weight-min="100" data-weight-max="999999" data-industry="电器,汽车">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/175/600/400" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+              专用机型
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">热固性塑料专用机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 1800-3500kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-fire text-primary mr-2"></i>
+                <span>高温适配</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 180MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>电器、汽车</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品 4 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2900" data-lock-max="2900" data-weight-min="850" data-weight-max="850" data-industry="家电">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/183/600/400" alt="BLOC2900 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BLOC2900 注塑机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 2900kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-weight text-primary mr-2"></i>
+                <span>注射重量: 850g</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 150MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>大型家电</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品 5 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2000" data-lock-max="4500" data-weight-min="300" data-weight-max="500" data-industry="电气,卫浴">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/237/600/400" alt="BMC专用注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+              专用机型
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">BMC专用注塑机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 2000-4500kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-cogs text-primary mr-2"></i>
+                <span>专用螺杆</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 190MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>电气、卫浴</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 产品 6 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1200" data-lock-max="3000" data-weight-min="0" data-weight-max="999999" data-industry="包装,容器">
+          <div class="relative overflow-hidden">
+            <img src="https://picsum.photos/id/251/600/400" alt="PET系列注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
+              专用机型
+            </div>
+          </div>
+          <div class="p-6">
+            <h3 class="text-xl font-semibold mb-2">PET系列注塑机</h3>
+            <div class="grid grid-cols-2 gap-4 mb-4">
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-compress text-primary mr-2"></i>
+                <span>锁模力: 1200-3000kN</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tint text-primary mr-2"></i>
+                <span>高效干燥</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-tachometer text-primary mr-2"></i>
+                <span>注射压力: 175MPa</span>
+              </div>
+              <div class="flex items-center text-gray-600">
+                <i class="fa fa-industry text-primary mr-2"></i>
+                <span>包装、容器</span>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <a href="#" class="text-primary font-medium hover:text-primary-light transition-colors">查看详情</a>
+              <button class="px-4 py-2 bg-primary/10 text-primary rounded-md hover:bg-primary/20 transition-colors">
+                <i class="fa fa-envelope mr-1"></i> 咨询
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 分页 -->
+      <div class="flex justify-center mt-12">
+        <nav class="inline-flex rounded-md shadow">
+          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-l-md">
+            <i class="fa fa-angle-left"></i>
+          </a>
+          <a href="#" class="px-4 py-2 bg-primary border border-primary text-sm font-medium text-white">1</a>
+          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
+          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
+          <span class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700">...</span>
+          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">8</a>
+          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md">
+            <i class="fa fa-angle-right"></i>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // 客户端产品筛选脚本：按锁模力范围、注射重量范围与行业进行过滤
+    (function(){
+      const lockSel = document.getElementById('filter-lock');
+      const weightSel = document.getElementById('filter-weight');
+      const industrySel = document.getElementById('filter-industry');
+      const filterBtn = document.getElementById('filter-btn');
+      const clearBtn = document.getElementById('clear-btn');
+      const productList = document.getElementById('product-list');
+
+      function parseRangeValue(val){
+        if(!val || val === 'all') return null;
+        const [minStr, maxStr] = val.split('-');
+        const min = Number(minStr || 0);
+        const max = Number(maxStr || Infinity);
+        return {min, max};
+      }
+
+      function intersects(aMin, aMax, bMin, bMax){
+        return !(aMax < bMin || aMin > bMax);
+      }
+
+      function applyFilter(){
+        const lockRange = parseRangeValue(lockSel ? lockSel.value : null);
+        const weightRange = parseRangeValue(weightSel ? weightSel.value : null);
+        const industry = industrySel ? industrySel.value : 'all';
+
+        const cards = productList ? productList.querySelectorAll('.product-card') : [];
+        let visible = 0;
+        cards.forEach(card => {
+          const cLockMin = Number(card.getAttribute('data-lock-min') || 0);
+          const cLockMax = Number(card.getAttribute('data-lock-max') || 999999);
+          const cWeightMin = Number(card.getAttribute('data-weight-min') || 0);
+          const cWeightMax = Number(card.getAttribute('data-weight-max') || 999999);
+          const cIndustry = (card.getAttribute('data-industry') || '').split(',').map(s=>s.trim()).filter(Boolean);
+
+          const okLock = lockRange ? intersects(cLockMin, cLockMax, lockRange.min, lockRange.max) : true;
+          const okWeight = weightRange ? intersects(cWeightMin, cWeightMax, weightRange.min, weightRange.max) : true;
+          const okIndustry = (industry === 'all') ? true : cIndustry.includes(industry);
+
+          if(okLock && okWeight && okIndustry){
+            card.style.display = '';
+            visible++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // 显示无结果提示
+        const parent = productList ? productList.parentNode : null;
+        if(parent){
+          let noEl = document.getElementById('no-results');
+          if(!noEl){
+            noEl = document.createElement('div');
+            noEl.id = 'no-results';
+            noEl.className = 'col-span-full text-center text-gray-500 mt-6';
+            parent.appendChild(noEl);
+          }
+          noEl.textContent = visible === 0 ? '未找到匹配的产品。' : '';
+        }
+      }
+
+      if(filterBtn) filterBtn.addEventListener('click', applyFilter);
+      if(clearBtn) clearBtn.addEventListener('click', function(){
+        if(lockSel) lockSel.value = 'all';
+        if(weightSel) weightSel.value = 'all';
+        if(industrySel) industrySel.value = 'all';
+        applyFilter();
+      });
+
+      // 不自动在 select 改变时筛选，改为仅在点击“筛选”按钮时触发
+      // 移除自动触发的监听和页面加载时的自动调用，保证用户点击后才筛选
+    })();
+  </script>
+
+  <!-- 产品详情模态框 (默认隐藏) -->
+  <div id="product-modal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="modal-backdrop"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-4xl bg-white rounded-lg shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="p-6 border-b">
+        <div class="flex justify-between items-center">
+          <h3 class="text-2xl font-bold">BLOC1500 注塑机</h3>
+          <button id="close-modal" class="text-gray-500 hover:text-gray-700 text-xl">
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </div>
+      
+      <div class="p-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <img src="https://picsum.photos/id/119/800/600" alt="BLOC1500 注塑机" class="w-full h-auto rounded-lg">
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">产品简介</h4>
+            <p class="text-gray-600 mb-6">BLOC1500是一款高性能中小型注塑机，采用先进的伺服控制系统和精密的机械结构，确保注塑过程的稳定性和高精度。该机型适用于电子、玩具、日用品等行业的中小型塑件生产，具有能耗低、效率高、操作简便等特点。</p>
+            
+            <h4 class="text-xl font-semibold mb-4">核心优势</h4>
+            <ul class="space-y-2 mb-6">
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>采用高精度线性导轨，确保运动平稳性和定位精度</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>高效节能伺服系统，能耗比传统机型降低25%</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>快速响应的注射系统，提高生产效率</span>
+              </li>
+              <li class="flex items-start">
+                <i class="fa fa-check-circle text-primary mt-1 mr-2"></i>
+                <span>人性化操作界面，易于学习和操作</span>
+              </li>
+            </ul>
+            
+            <div class="flex gap-4">
+              <button class="px-6 py-2 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors">
+                <i class="fa fa-phone mr-2"></i> 立即咨询
+              </button>
+              <button class="px-6 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                <i class="fa fa-download mr-2"></i> 下载手册
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="mb-8">
+          <h4 class="text-xl font-semibold mb-4">技术参数</h4>
+          <div class="overflow-x-auto">
+            <table class="min-w-full border-collapse">
+              <thead>
+                <tr class="bg-light">
+                  <th class="py-3 px-4 border border-gray-300 text-left">项目</th>
+                  <th class="py-3 px-4 border border-gray-300 text-left">参数</th>
+                  <th class="py-3 px-4 border border-gray-300 text-left">项目</th>
+                  <th class="py-3 px-4 border border-gray-300 text-left">参数</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="py-3 px-4 border border-gray-300">锁模力</td>
+                  <td class="py-3 px-4 border border-gray-300">1500 kN</td>
+                  <td class="py-3 px-4 border border-gray-300">拉杆间距</td>
+                  <td class="py-3 px-4 border border-gray-300">520×520 mm</td>
+                </tr>
+                <tr class="bg-light">
+                  <td class="py-3 px-4 border border-gray-300">最大容模量</td>
+                  <td class="py-3 px-4 border border-gray-300">300 mm</td>
+                  <td class="py-3 px-4 border border-gray-300">最小模厚</td>
+                  <td class="py-3 px-4 border border-gray-300">150 mm</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 border border-gray-300">注射重量 (PS)</td>
+                  <td class="py-3 px-4 border border-gray-300">320 g</td>
+                  <td class="py-3 px-4 border border-gray-300">螺杆直径</td>
+                  <td class="py-3 px-4 border border-gray-300">45 mm</td>
+                </tr>
+                <tr class="bg-light">
+                  <td class="py-3 px-4 border border-gray-300">注射压力</td>
+                  <td class="py-3 px-4 border border-gray-300">170 MPa</td>
+                  <td class="py-3 px-4 border border-gray-300">螺杆长径比</td>
+                  <td class="py-3 px-4 border border-gray-300">22:1</td>
+                </tr>
+                <tr>
+                  <td class="py-3 px-4 border border-gray-300">最大注射速率</td>
+                  <td class="py-3 px-4 border border-gray-300">120 mm/s</td>
+                  <td class="py-3 px-4 border border-gray-300">合模行程</td>
+                  <td class="py-3 px-4 border border-gray-300">400 mm</td>
+                </tr>
+                <tr class="bg-light">
+                  <td class="py-3 px-4 border border-gray-300">电机功率</td>
+                  <td class="py-3 px-4 border border-gray-300">15 kW</td>
+                  <td class="py-3 px-4 border border-gray-300">机器尺寸 (L×W×H)</td>
+                  <td class="py-3 px-4 border border-gray-300">4600×1350×1980 mm</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="text-sm text-gray-500 mt-2">注：由于机型改进，技术参数可能变更，恕不另行通知，详情请咨询客服。</p>
+        </div>
+        
+        <div class="mb-8">
+          <h4 class="text-xl font-semibold mb-4">系统配置</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h5 class="font-semibold mb-2 flex items-center">
+                <i class="fa fa-cog text-primary mr-2"></i> 合模系统
+              </h5>
+              <ul class="pl-6 space-y-1 text-gray-600 list-disc">
+                <li>高精度线性导轨导向</li>
+                <li>五点式双曲肘合模机构</li>
+                <li>机械挡块调模，电子尺位置检测</li>
+                <li>自动润滑系统</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-semibold mb-2 flex items-center">
+                <i class="fa fa-cog text-primary mr-2"></i> 注射系统
+              </h5>
+              <ul class="pl-6 space-y-1 text-gray-600 list-disc">
+                <li>伺服电机驱动，精密滚珠丝杠传动</li>
+                <li>合金螺杆料筒，氮化处理</li>
+                <li>高精度压力传感器</li>
+                <li>多级注射速度和压力控制</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-semibold mb-2 flex items-center">
+                <i class="fa fa-cog text-primary mr-2"></i> 控制系统
+              </h5>
+              <ul class="pl-6 space-y-1 text-gray-600 list-disc">
+                <li>工业级PLC控制系统</li>
+                <li>10.1英寸彩色触摸屏</li>
+                <li>多组工艺参数存储</li>
+                <li>故障自诊断功能</li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-semibold mb-2 flex items-center">
+                <i class="fa fa-cog text-primary mr-2"></i> 液压系统
+              </h5>
+              <ul class="pl-6 space-y-1 text-gray-600 list-disc">
+                <li>变量柱塞泵，低噪音设计</li>
+                <li>高精度比例压力流量控制</li>
+                <li>油温自动控制</li>
+                <li>高效冷却系统</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        <div>
+          <h4 class="text-xl font-semibold mb-4">标准配置/选用配置</h4>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <h5 class="font-semibold mb-3 text-primary">标准配置</h5>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>伺服节能系统</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>10.1英寸彩色触摸屏</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>自动润滑系统</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>安全保护装置</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>料斗干燥机接口</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-check text-green-500 mt-1 mr-2"></i>
+                  <span>模具快速更换装置</span>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h5 class="font-semibold mb-3 text-primary">选用配置</h5>
+              <ul class="space-y-2">
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>机械手自动取出系统</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>模内贴标装置</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>氮气辅助注塑系统</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>螺杆料筒特殊处理</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>多组分注射装置</span>
+                </li>
+                <li class="flex items-start">
+                  <i class="fa fa-plus text-blue-500 mt-1 mr-2"></i>
+                  <span>远程监控系统</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 技术支持 -->
+  <section id="tech" class="py-16 bg-light">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">技术支持</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">专业的技术团队为您提供全方位的支持与服务</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <!-- 左侧导航 -->
+        <div class="lg:col-span-1">
+          <div class="bg-white rounded-lg shadow-md overflow-hidden sticky top-24">
+            <div class="bg-primary text-white p-4">
+              <h3 class="text-xl font-semibold">技术支持中心</h3>
+            </div>
+            <nav class="p-4">
+              <ul class="space-y-1">
+                <li>
+                  <a href="#tech-training" class="block p-3 bg-primary/10 text-primary rounded-md font-medium">培训服务</a>
+                </li>
+                <li>
+                  <a href="#tech-aftersale" class="block p-3 hover:bg-gray-100 rounded-md transition-colors">售后服务</a>
+                </li>
+                <li>
+                  <a href="#tech-docs" class="block p-3 hover:bg-gray-100 rounded-md transition-colors">技术文档</a>
+                </li>
+                <li>
+                  <a href="#tech-faq" class="block p-3 hover:bg-gray-100 rounded-md transition-colors">常见问题</a>
+                </li>
+                <li>
+                  <a href="#tech-consult" class="block p-3 hover:bg-gray-100 rounded-md transition-colors">在线咨询</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="p-4 border-t">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                  <i class="fa fa-phone text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500">技术支持热线</p>
+                  <p class="font-semibold">400-123-4567</p>
+                </div>
+              </div>
+              <div class="flex items-center">
+                <div class="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center mr-3">
+                  <i class="fa fa-envelope text-primary"></i>
+                </div>
+                <div>
+                  <p class="text-sm text-gray-500">技术支持邮箱</p>
+                  <p class="font-semibold">tech@boluoke.com</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 右侧内容 -->
+        <div class="lg:col-span-2">
+          <!-- 培训服务 -->
+          <div id="tech-training" class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+              <i class="fa fa-graduation-cap text-primary mr-3"></i> 培训服务
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <img src="https://picsum.photos/id/20/600/400" alt="技术培训" class="w-full h-auto rounded-lg mb-4">
+                <p class="text-gray-600">博洛克提供专业的技术培训服务，帮助客户更好地掌握设备操作和维护技能，提高生产效率和设备使用寿命。</p>
+              </div>
+              <div>
+                <h4 class="text-xl font-medium mb-4">培训内容</h4>
+                <ul class="space-y-3">
+                  <li class="flex items-start">
+                    <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                      <i class="fa fa-user text-primary"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-medium">操作技能培训</h5>
+                      <p class="text-gray-600 text-sm">设备基本操作、参数设置、生产工艺调试等实操培训</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                      <i class="fa fa-wrench text-primary"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-medium">维护保养培训</h5>
+                      <p class="text-gray-600 text-sm">日常维护、定期保养、常见故障排除等技能培训</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                      <i class="fa fa-cogs text-primary"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-medium">工艺优化培训</h5>
+                      <p class="text-gray-600 text-sm">根据不同材料和产品，提供工艺参数优化指导</p>
+                    </div>
+                  </li>
+                  <li class="flex items-start">
+                    <div class="w-8 h-8 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-3 flex-shrink-0">
+                      <i class="fa fa-laptop text-primary"></i>
+                    </div>
+                    <div>
+                      <h5 class="font-medium">定制化培训计划</h5>
+                      <p class="text-gray-600 text-sm">根据客户实际需求，量身定制培训内容和周期</p>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 售后服务 -->
+          <div id="tech-aftersale" class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+              <i class="fa fa-headphones text-primary mr-3"></i> 售后服务
+            </h3>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-clock-o text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">24小时远程服务</h4>
+                <p class="text-gray-600 text-sm">全天候在线技术支持，远程诊断和解决设备问题，快速响应客户需求。</p>
+              </div>
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-truck text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">配件供应服务</h4>
+                <p class="text-gray-600 text-sm">完善的配件库存管理，确保常用配件快速供应，缩短设备维修周期。</p>
+              </div>
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-user text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">现场服务支持</h4>
+                <p class="text-gray-600 text-sm">专业技术人员上门服务，提供设备安装调试、故障维修等现场支持。</p>
+              </div>
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-refresh text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">设备升级服务</h4>
+                <p class="text-gray-600 text-sm">提供设备控制系统升级、性能提升等服务，延长设备使用寿命。</p>
+              </div>
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-file-text text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">保养合同服务</h4>
+                <p class="text-gray-600 text-sm">提供定制化设备保养合同，定期上门保养，预防故障发生。</p>
+              </div>
+              <div class="bg-light p-6 rounded-lg">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <i class="fa fa-life-ring text-primary text-xl"></i>
+                </div>
+                <h4 class="text-lg font-medium mb-2">紧急抢修服务</h4>
+                <p class="text-gray-600 text-sm">针对突发故障，提供紧急响应服务，最大限度减少客户停机损失。</p>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 技术文档 -->
+          <div id="tech-docs" class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+              <i class="fa fa-file-pdf-o text-primary mr-3"></i> 技术文档
+            </h3>
+            <p class="text-gray-600 mb-6">下载中心提供各类技术文档，包括产品说明书、操作手册、维护保养指南等，帮助您更好地了解和使用我们的产品。</p>
+            
+            <div class="space-y-4">
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="bg-light p-4 flex justify-between items-center">
+                  <h4 class="font-medium">全系列注塑机产品手册</h4>
+                  <span class="text-sm text-gray-500">更新日期：2023-05-10</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                  <div class="flex items-center">
+                    <i class="fa fa-file-pdf-o text-red-500 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-gray-600">包含BLOC系列所有机型的技术参数和配置说明</p>
+                      <p class="text-xs text-gray-500 mt-1">文件大小：8.5MB</p>
+                    </div>
+                  </div>
+                  <a href="#" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    <i class="fa fa-download mr-1"></i> 下载
+                  </a>
+                </div>
+              </div>
+              
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="bg-light p-4 flex justify-between items-center">
+                  <h4 class="font-medium">注塑机操作指南</h4>
+                  <span class="text-sm text-gray-500">更新日期：2023-03-15</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                  <div class="flex items-center">
+                    <i class="fa fa-file-pdf-o text-red-500 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-gray-600">详细介绍设备操作步骤和注意事项</p>
+                      <p class="text-xs text-gray-500 mt-1">文件大小：3.2MB</p>
+                    </div>
+                  </div>
+                  <a href="#" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    <i class="fa fa-download mr-1"></i> 下载
+                  </a>
+                </div>
+              </div>
+              
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="bg-light p-4 flex justify-between items-center">
+                  <h4 class="font-medium">维护保养手册</h4>
+                  <span class="text-sm text-gray-500">更新日期：2023-01-20</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                  <div class="flex items-center">
+                    <i class="fa fa-file-pdf-o text-red-500 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-gray-600">设备日常维护和定期保养的详细说明</p>
+                      <p class="text-xs text-gray-500 mt-1">文件大小：2.8MB</p>
+                    </div>
+                  </div>
+                  <a href="#" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    <i class="fa fa-download mr-1"></i> 下载
+                  </a>
+                </div>
+              </div>
+              
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="bg-light p-4 flex justify-between items-center">
+                  <h4 class="font-medium">故障排除指南</h4>
+                  <span class="text-sm text-gray-500">更新日期：2023-04-05</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                  <div class="flex items-center">
+                    <i class="fa fa-file-pdf-o text-red-500 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-gray-600">常见故障分析和排除方法</p>
+                      <p class="text-xs text-gray-500 mt-1">文件大小：1.9MB</p>
+                    </div>
+                  </div>
+                  <a href="#" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    <i class="fa fa-download mr-1"></i> 下载
+                  </a>
+                </div>
+              </div>
+              
+              <div class="border border-gray-200 rounded-lg overflow-hidden">
+                <div class="bg-light p-4 flex justify-between items-center">
+                  <h4 class="font-medium">热固性专用机技术手册</h4>
+                  <span class="text-sm text-gray-500">更新日期：2023-02-18</span>
+                </div>
+                <div class="p-4 flex justify-between items-center">
+                  <div class="flex items-center">
+                    <i class="fa fa-file-pdf-o text-red-500 text-2xl mr-3"></i>
+                    <div>
+                      <p class="text-sm text-gray-600">热固性塑料专用机的技术参数和应用指南</p>
+                      <p class="text-xs text-gray-500 mt-1">文件大小：4.1MB</p>
+                    </div>
+                  </div>
+                  <a href="#" class="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    <i class="fa fa-download mr-1"></i> 下载
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 常见问题 -->
+          <div id="tech-faq" class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+              <i class="fa fa-question-circle text-primary mr-3"></i> 常见问题
+            </h3>
+            
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-4">操作类</h4>
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>如何正确设置注塑机的工艺参数？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">设置注塑机工艺参数需要考虑多个因素：1) 塑料材料特性，不同材料需要不同的温度和压力；2) 产品结构，复杂结构需要较慢的注射速度；3) 模具设计，浇口大小和位置影响压力设置。建议参考材料供应商提供的参数范围，并通过小批量试产逐步优化。</p>
+                  </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>设备启动前需要做哪些检查？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">设备启动前应进行以下检查：1) 电源电压是否正常；2) 液压油位和油温是否在正常范围；3) 润滑系统是否工作正常；4) 安全保护装置是否完好；5) 模具安装是否牢固；6) 原料是否充足且干燥符合要求。完成以上检查后，方可启动设备进行预热。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-lg font-medium mb-4">维护类</h4>
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>注塑机的日常维护包括哪些内容？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">日常维护包括：1) 清理设备表面和内部杂物；2) 检查各润滑点油量，及时补充润滑油；3) 检查液压系统有无泄漏；4) 清洁冷却系统过滤器；5) 检查各安全装置是否正常；6) 记录设备运行参数和异常情况。建议制定每日、每周和每月的维护计划，并严格执行。</p>
+                  </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>螺杆料筒的保养周期是多久？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">螺杆料筒的保养周期取决于使用频率和材料特性。一般情况下，连续生产每2000小时需要进行一次检查和保养。对于添加玻纤的材料，建议缩短至1000小时。保养内容包括：清理残留料、检查磨损情况、测量间隙等。如发现严重磨损，应及时更换以保证产品质量。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div>
+              <h4 class="text-lg font-medium mb-4">故障类</h4>
+              <div class="space-y-4">
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>设备出现压力不足的原因是什么？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">压力不足可能有以下原因：1) 液压系统泄漏；2) 油泵磨损或损坏；3) 压力控制阀故障；4) 油路堵塞；5) 电机转速异常。建议先检查液压油位和有无明显泄漏，如未发现问题，应联系专业技术人员进行进一步诊断。</p>
+                  </div>
+                </div>
+                
+                <div class="border border-gray-200 rounded-lg overflow-hidden">
+                  <button class="faq-toggle w-full text-left p-4 bg-light flex justify-between items-center">
+                    <span>产品出现飞边的主要原因是什么？</span>
+                    <i class="fa fa-chevron-down text-primary transition-transform"></i>
+                  </button>
+                  <div class="faq-content hidden p-4 border-t">
+                    <p class="text-gray-600">产品出现飞边通常与以下因素有关：1) 锁模力不足；2) 注射压力过高；3) 模具合模间隙过大；4) 模具定位不准；5) 料温过高导致材料流动性过好。解决方法：首先检查并调整锁模力和注射压力，如问题仍存在，应检查模具状况，必要时进行模具维修。</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- 在线咨询 -->
+          <div id="tech-consult" class="bg-white rounded-lg shadow-md p-8">
+            <h3 class="text-2xl font-semibold mb-6 flex items-center">
+              <i class="fa fa-comments text-primary mr-3"></i> 在线咨询
+            </h3>
+            <p class="text-gray-600 mb-6">如有其他技术问题，欢迎通过以下方式与我们的技术团队联系，我们将尽快为您提供专业解答。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <form class="space-y-4">
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="name">姓名</label>
+                    <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名">
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="company">公司名称</label>
+                    <input type="text" id="company" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称">
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="phone">联系电话</label>
+                    <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话">
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="email">电子邮箱</label>
+                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的电子邮箱">
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="product-type">相关产品</label>
+                    <select id="product-type" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                      <option value="">请选择产品类型</option>
+                      <option value="bloc1500">BLOC1500 注塑机</option>
+                      <option value="bloc2300">BLOC2300 注塑机</option>
+                      <option value="bloc2900">BLOC2900 注塑机</option>
+                      <option value="thermoset">热固性塑料专用机</option>
+                      <option value="bmc">BMC专用机</option>
+                      <option value="pet">PET系列注塑机</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label class="block text-gray-700 mb-2" for="message">咨询内容</label>
+                    <textarea id="message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述您的问题或需求"></textarea>
+                  </div>
+                  <button type="submit" class="w-full px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
+                    提交咨询
+                  </button>
+                </form>
+              </div>
+              
+              <div>
+                <div class="bg-light p-6 rounded-lg mb-6">
+                  <h4 class="text-lg font-medium mb-4">技术支持时间</h4>
+                  <ul class="space-y-2 text-gray-600">
+                    <li class="flex justify-between">
+                      <span>周一至周五</span>
+                      <span>8:30 - 18:00</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span>周六</span>
+                      <span>9:00 - 16:00</span>
+                    </li>
+                    <li class="flex justify-between">
+                      <span>周日及法定节假日</span>
+                      <span>仅提供紧急服务</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="bg-light p-6 rounded-lg mb-6">
+                  <h4 class="text-lg font-medium mb-4">联系方式</h4>
+                  <ul class="space-y-3 text-gray-600">
+                    <li class="flex items-start">
+                      <i class="fa fa-phone text-primary mt-1 mr-3"></i>
+                      <span>技术支持热线：400-123-4567</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fa fa-envelope text-primary mt-1 mr-3"></i>
+                      <span>技术支持邮箱：tech@boluoke.com</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fa fa-weixin text-primary mt-1 mr-3"></i>
+                      <span>微信客服：boluoke_tech</span>
+                    </li>
+                    <li class="flex items-start">
+                      <i class="fa fa-qq text-primary mt-1 mr-3"></i>
+                      <span>QQ客服：123456789</span>
+                    </li>
+                  </ul>
+                </div>
+                
+                <div class="bg-primary/10 p-6 rounded-lg">
+                  <h4 class="text-lg font-medium mb-4 text-primary">紧急服务</h4>
+                  <p class="text-gray-600 mb-4">如遇设备突发故障，影响生产，请拨打紧急服务热线，我们将安排技术人员尽快处理。</p>
+                  <p class="text-2xl font-bold text-primary">400-123-4568</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 联系方式 -->
+  <section id="contact" class="py-16">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">联系方式</h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">欢迎随时与我们联系，我们将竭诚为您提供服务</p>
+      </div>
+      
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <!-- 联系信息 -->
+        <div>
+          <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6">联系信息</h3>
+            <ul class="space-y-6">
+              <li class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-4 flex-shrink-0">
+                  <i class="fa fa-map-marker text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">公司地址</h4>
+                  <p class="text-gray-600">中国·江苏省苏州市工业园区机械工业园88号博洛克大厦</p>
+                  <p class="text-gray-600 mt-1">Add: Block Building, No.88, Machinery Industrial Park, Suzhou Industrial Park, Jiangsu, China</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-4 flex-shrink-0">
+                  <i class="fa fa-phone text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">联系电话</h4>
+                  <p class="text-gray-600">销售热线：0512-8888-7777</p>
+                  <p class="text-gray-600">技术支持：400-123-4567</p>
+                  <p class="text-gray-600">传真：0512-8888-6666</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-4 flex-shrink-0">
+                  <i class="fa fa-envelope text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">电子邮箱</h4>
+                  <p class="text-gray-600">销售邮箱：sales@boluoke.com</p>
+                  <p class="text-gray-600">技术邮箱：tech@boluoke.com</p>
+                  <p class="text-gray-600">客服邮箱：service@boluoke.com</p>
+                </div>
+              </li>
+              <li class="flex items-start">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mt-0.5 mr-4 flex-shrink-0">
+                  <i class="fa fa-clock-o text-primary text-xl"></i>
+                </div>
+                <div>
+                  <h4 class="font-medium mb-1">工作时间</h4>
+                  <p class="text-gray-600">周一至周五：8:30 - 18:00</p>
+                  <p class="text-gray-600">周六：9:00 - 16:00</p>
+                  <p class="text-gray-600">周日及法定节假日休息</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="bg-white rounded-lg shadow-md p-8">
+            <h3 class="text-2xl font-semibold mb-6">关注我们</h3>
+            <p class="text-gray-600 mb-6">扫描下方二维码，关注博洛克官方微信公众号，获取最新产品信息和技术资讯</p>
+            <div class="flex items-center">
+              <div class="bg-light p-4 rounded-md mr-6">
+                <img src="https://picsum.photos/id/1/200/200" alt="微信公众号" class="w-48 h-48 object-cover">
+              </div>
+              <div>
+                <h4 class="font-medium mb-2">博洛克机械</h4>
+                <p class="text-gray-600 text-sm">官方微信公众号</p>
+                <div class="flex space-x-4 mt-4">
+                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
+                    <i class="fa fa-weixin"></i>
+                  </a>
+                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
+                    <i class="fa fa-weibo"></i>
+                  </a>
+                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
+                    <i class="fa fa-youtube-play"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- 留言表单和地图 -->
+        <div>
+          <div class="bg-white rounded-lg shadow-md p-8 mb-8">
+            <h3 class="text-2xl font-semibold mb-6">在线留言</h3>
+            <form class="space-y-4">
+              <div>
+                <label class="block text-gray-700 mb-2" for="contact-name">姓名 <span class="text-red-500">*</span></label>
+                <input type="text" id="contact-name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 mb-2" for="contact-company">公司名称 <span class="text-red-500">*</span></label>
+                <input type="text" id="contact-company" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 mb-2" for="contact-phone">联系电话 <span class="text-red-500">*</span></label>
+                <input type="tel" id="contact-phone" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话" required>
+              </div>
+              <div>
+                <label class="block text-gray-700 mb-2" for="contact-email">电子邮箱</label>
+                <input type="email" id="contact-email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的电子邮箱">
+              </div>
+              <div>
+                <label class="block text-gray-700 mb-2" for="contact-type">咨询类型 <span class="text-red-500">*</span></label>
+                <select id="contact-type" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus
