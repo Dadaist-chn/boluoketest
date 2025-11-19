@@ -49,6 +49,28 @@
       }
     }
   </style>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      try {
+        var h3s = document.querySelectorAll('h3');
+        for (var i = 0; i < h3s.length; i++) {
+          var h = h3s[i];
+          if (h.textContent && h.textContent.trim() === '在线留言') {
+            var card = h.closest('div.bg-white.rounded-lg');
+            if (card && card.parentElement) {
+              var outer = card.parentElement;
+              outer.remove();
+            } else if (card) {
+              card.remove();
+            }
+            break;
+          }
+        }
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  </script>
 </head>
 
 <body class="font-inter text-secondary bg-white">
@@ -205,7 +227,7 @@
         <!-- 产品 1 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/119/600/400" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-1.jpg" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-accent text-white text-sm px-3 py-1 rounded-full">
               热销产品
             </div>
@@ -232,7 +254,7 @@
         <!-- 产品 2 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/133/600/400" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-2.jpg" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">BLOC2300 注塑机</h3>
@@ -256,7 +278,7 @@
         <!-- 产品 3 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/175/600/400" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/horizontalinjectionmoldingmachine.jpg" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
               专用机型
             </div>
@@ -298,7 +320,7 @@
       </div>
       
       <div class="relative">
-        <div class="flex space-x-6 overflow-x-auto pb-8 scrollbar-hide snap-x">
+        <div id="apps-carousel" class="flex space-x-6 overflow-x-auto pb-8 scrollbar-hide snap-x">
           <!-- 应用领域 1 -->
           <div class="min-w-[280px] sm:min-w-[320px] bg-white rounded-lg shadow-md p-6 text-center snap-start">
             <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -356,18 +378,108 @@
         
         <!-- 滚动提示 -->
         <div class="hidden md:block absolute top-1/2 left-0 -translate-y-1/2 transform -translate-x-4">
-          <button class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+          <button id="apps-prev" class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
             <i class="fa fa-angle-left"></i>
           </button>
         </div>
         <div class="hidden md:block absolute top-1/2 right-0 -translate-y-1/2 transform translate-x-4">
-          <button class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
+          <button id="apps-next" class="w-10 h-10 bg-white rounded-full shadow-md flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-colors">
             <i class="fa fa-angle-right"></i>
           </button>
         </div>
+        <!-- 分页指示点 -->
+        <div id="apps-dots" class="hidden md:flex justify-center mt-4 gap-2"></div>
       </div>
     </div>
   </section>
+  <script>
+    // 应用领域横向滚动：左右按钮 + 分页点 + 边界禁用
+    (function(){
+      const scroller = document.getElementById('apps-carousel');
+      const prev = document.getElementById('apps-prev');
+      const next = document.getElementById('apps-next');
+      const dotsWrap = document.getElementById('apps-dots');
+      if(!scroller || !prev || !next || !dotsWrap) return;
+
+      function step(){
+        return Math.max(Math.floor(scroller.clientWidth * 0.9), 320);
+      }
+
+      function pageCount(){
+        return Math.max(1, Math.ceil((scroller.scrollWidth - 1) / step()));
+      }
+
+      function currentPage(){
+        return Math.round(scroller.scrollLeft / step());
+      }
+
+      function updateArrows(){
+        const atStart = scroller.scrollLeft <= 2;
+        const atEnd = scroller.scrollLeft + scroller.clientWidth >= scroller.scrollWidth - 2;
+        prev.classList.toggle('opacity-40', atStart);
+        prev.classList.toggle('cursor-not-allowed', atStart);
+        prev.classList.toggle('pointer-events-none', atStart);
+        next.classList.toggle('opacity-40', atEnd);
+        next.classList.toggle('cursor-not-allowed', atEnd);
+        next.classList.toggle('pointer-events-none', atEnd);
+      }
+
+      function buildDots(){
+        dotsWrap.innerHTML = '';
+        const n = pageCount();
+        if(n <= 1){
+          dotsWrap.classList.add('hidden');
+          return;
+        }
+        dotsWrap.classList.remove('hidden');
+        for(let i=0;i<n;i++){
+          const d = document.createElement('button');
+          d.setAttribute('aria-label','跳转至第'+(i+1)+'页');
+          d.className = 'w-2.5 h-2.5 rounded-full bg-gray-300 hover:bg-primary/70 transition-colors';
+          d.addEventListener('click', ()=>{
+            scroller.scrollTo({left: i * step(), behavior: 'smooth'});
+          });
+          dotsWrap.appendChild(d);
+        }
+        updateDots();
+      }
+
+      function updateDots(){
+        const n = dotsWrap.children.length;
+        if(n === 0) return;
+        const idx = Math.min(n-1, Math.max(0, currentPage()));
+        for(let i=0;i<n;i++){
+          const el = dotsWrap.children[i];
+          el.classList.toggle('bg-primary', i === idx);
+          el.classList.toggle('bg-gray-300', i !== idx);
+          el.classList.toggle('w-4', i === idx);
+          el.classList.toggle('h-2.5', true);
+        }
+      }
+
+      function onResize(){
+        buildDots();
+        updateArrows();
+      }
+
+      prev.addEventListener('click', function(){
+        scroller.scrollBy({left: -step(), behavior: 'smooth'});
+      });
+      next.addEventListener('click', function(){
+        scroller.scrollBy({left: step(), behavior: 'smooth'});
+      });
+      scroller.addEventListener('scroll', function(){
+        updateArrows();
+        // 节流到 animation-frame
+        window.requestAnimationFrame(updateDots);
+      });
+      window.addEventListener('resize', onResize);
+
+      // 初始构建
+      buildDots();
+      updateArrows();
+    })();
+  </script>
 
   <!-- 服务保障 -->
   <section class="py-16">
@@ -511,18 +623,6 @@
         <p class="text-gray-600 max-w-2xl mx-auto">全系列注塑机产品，满足不同行业、不同规格的生产需求</p>
       </div>
       
-      <!-- 产品分类 -->
-      <div class="mb-12">
-        <div class="flex flex-wrap justify-center gap-4">
-          <button class="px-6 py-2 bg-primary text-white rounded-full">全系列产品</button>
-          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">标准注塑机</button>
-          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">热固性专用机</button>
-          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">BMC专用机</button>
-          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">PET系列</button>
-          <button class="px-6 py-2 bg-white border border-gray-300 rounded-full hover:border-primary hover:text-primary transition-colors">UPVC系列</button>
-        </div>
-      </div>
-      
       <!-- 产品筛选 -->
       <div class="bg-light p-6 rounded-lg mb-10">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 items-end">
@@ -570,7 +670,7 @@
         <!-- 产品 1 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1500" data-lock-max="1500" data-weight-min="320" data-weight-max="320" data-industry="电子,玩具">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/119/600/400" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-1.jpg" alt="BLOC1500 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">BLOC1500 注塑机</h3>
@@ -604,7 +704,7 @@
         <!-- 产品 2 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2300" data-lock-max="2300" data-weight-min="580" data-weight-max="580" data-industry="家电,汽车">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/133/600/400" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-2.jpg" alt="BLOC2300 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">BLOC2300 注塑机</h3>
@@ -638,7 +738,7 @@
         <!-- 产品 3 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1800" data-lock-max="3500" data-weight-min="100" data-weight-max="999999" data-industry="电器,汽车">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/175/600/400" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/horizontalinjectionmoldingmachine.jpg" alt="热固性塑料专用机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
               专用机型
             </div>
@@ -675,7 +775,7 @@
         <!-- 产品 4 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2900" data-lock-max="2900" data-weight-min="850" data-weight-max="850" data-industry="家电">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/183/600/400" alt="BLOC2900 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-3.jpg" alt="BLOC2900 注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
           </div>
           <div class="p-6">
             <h3 class="text-xl font-semibold mb-2">BLOC2900 注塑机</h3>
@@ -709,7 +809,7 @@
         <!-- 产品 5 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="2000" data-lock-max="4500" data-weight-min="300" data-weight-max="500" data-industry="电气,卫浴">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/237/600/400" alt="BMC专用注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/hopperdryerforinjectionmoldingmachine.jpg" alt="BMC专用注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
               专用机型
             </div>
@@ -746,7 +846,7 @@
         <!-- 产品 6 -->
         <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow group product-card" data-lock-min="1200" data-lock-max="3000" data-weight-min="0" data-weight-max="999999" data-industry="包装,容器">
           <div class="relative overflow-hidden">
-            <img src="https://picsum.photos/id/251/600/400" alt="PET系列注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <img src="pics/adv-img-4.jpg" alt="PET系列注塑机" class="w-full h-60 object-cover transform group-hover:scale-105 transition-transform duration-500">
             <div class="absolute top-4 right-4 bg-primary text-white text-sm px-3 py-1 rounded-full">
               专用机型
             </div>
@@ -781,27 +881,13 @@
         </div>
       </div>
       
-      <!-- 分页 -->
-      <div class="flex justify-center mt-12">
-        <nav class="inline-flex rounded-md shadow">
-          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-l-md">
-            <i class="fa fa-angle-left"></i>
-          </a>
-          <a href="#" class="px-4 py-2 bg-primary border border-primary text-sm font-medium text-white">1</a>
-          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">2</a>
-          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">3</a>
-          <span class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700">...</span>
-          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-700 hover:bg-gray-50">8</a>
-          <a href="#" class="px-4 py-2 bg-white border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 rounded-r-md">
-            <i class="fa fa-angle-right"></i>
-          </a>
-        </nav>
-      </div>
+      <!-- 动态分页容器 -->
+      <div id="pagination" class="flex justify-center mt-12"></div>
     </div>
   </section>
 
   <script>
-    // 客户端产品筛选脚本：按锁模力范围、注射重量范围与行业进行过滤
+    // 过滤 + 分页（客户端）
     (function(){
       const lockSel = document.getElementById('filter-lock');
       const weightSel = document.getElementById('filter-weight');
@@ -809,69 +895,98 @@
       const filterBtn = document.getElementById('filter-btn');
       const clearBtn = document.getElementById('clear-btn');
       const productList = document.getElementById('product-list');
+      const paginationEl = document.getElementById('pagination');
+
+      const allCards = Array.from(productList.querySelectorAll('.product-card'));
+      let filtered = allCards.slice();
+      let currentPage = 1;
+      const perPage = 6; // 每页显示数量
 
       function parseRangeValue(val){
         if(!val || val === 'all') return null;
         const [minStr, maxStr] = val.split('-');
-        const min = Number(minStr || 0);
-        const max = Number(maxStr || Infinity);
-        return {min, max};
+        return {min: Number(minStr||0), max: Number(maxStr||Infinity)};
       }
+      function intersects(aMin,aMax,bMin,bMax){return !(aMax < bMin || aMin > bMax);}    
 
-      function intersects(aMin, aMax, bMin, bMax){
-        return !(aMax < bMin || aMin > bMax);
+      function rebuildNoResult(visible){
+        let noEl = document.getElementById('no-results');
+        if(!noEl){
+          noEl = document.createElement('div');
+          noEl.id = 'no-results';
+          noEl.className = 'col-span-full text-center text-gray-500 mt-6';
+          productList.parentNode.appendChild(noEl);
+        }
+        noEl.textContent = visible === 0 ? '未找到匹配的产品。' : '';
       }
 
       function applyFilter(){
-        const lockRange = parseRangeValue(lockSel ? lockSel.value : null);
-        const weightRange = parseRangeValue(weightSel ? weightSel.value : null);
-        const industry = industrySel ? industrySel.value : 'all';
-
-        const cards = productList ? productList.querySelectorAll('.product-card') : [];
-        let visible = 0;
-        cards.forEach(card => {
-          const cLockMin = Number(card.getAttribute('data-lock-min') || 0);
-          const cLockMax = Number(card.getAttribute('data-lock-max') || 999999);
-          const cWeightMin = Number(card.getAttribute('data-weight-min') || 0);
-          const cWeightMax = Number(card.getAttribute('data-weight-max') || 999999);
-          const cIndustry = (card.getAttribute('data-industry') || '').split(',').map(s=>s.trim()).filter(Boolean);
-
-          const okLock = lockRange ? intersects(cLockMin, cLockMax, lockRange.min, lockRange.max) : true;
-          const okWeight = weightRange ? intersects(cWeightMin, cWeightMax, weightRange.min, weightRange.max) : true;
-          const okIndustry = (industry === 'all') ? true : cIndustry.includes(industry);
-
-          if(okLock && okWeight && okIndustry){
-            card.style.display = '';
-            visible++;
-          } else {
-            card.style.display = 'none';
-          }
+        const lockRange = parseRangeValue(lockSel?.value);
+        const weightRange = parseRangeValue(weightSel?.value);
+        const industry = industrySel?.value || 'all';
+        filtered = allCards.filter(card => {
+          const cLockMin = Number(card.getAttribute('data-lock-min')||0);
+          const cLockMax = Number(card.getAttribute('data-lock-max')||999999);
+          const cWeightMin = Number(card.getAttribute('data-weight-min')||0);
+          const cWeightMax = Number(card.getAttribute('data-weight-max')||999999);
+          const cIndustry = (card.getAttribute('data-industry')||'').split(',').map(s=>s.trim()).filter(Boolean);
+          const okLock = lockRange ? intersects(cLockMin,cLockMax,lockRange.min,lockRange.max) : true;
+          const okWeight = weightRange ? intersects(cWeightMin,cWeightMax,weightRange.min,weightRange.max) : true;
+          const okIndustry = industry === 'all' ? true : cIndustry.includes(industry);
+          return okLock && okWeight && okIndustry;
         });
+        currentPage = 1;
+        render();
+      }
 
-        // 显示无结果提示
-        const parent = productList ? productList.parentNode : null;
-        if(parent){
-          let noEl = document.getElementById('no-results');
-          if(!noEl){
-            noEl = document.createElement('div');
-            noEl.id = 'no-results';
-            noEl.className = 'col-span-full text-center text-gray-500 mt-6';
-            parent.appendChild(noEl);
-          }
-          noEl.textContent = visible === 0 ? '未找到匹配的产品。' : '';
+      function render(){
+        // 隐藏全部
+        allCards.forEach(c=>{c.style.display='none';});
+        const total = filtered.length;
+        const totalPages = Math.ceil(total / perPage) || 1;
+        const start = (currentPage - 1) * perPage;
+        const slice = filtered.slice(start, start + perPage);
+        slice.forEach(c=>{c.style.display='';});
+        rebuildNoResult(total);
+        buildPagination(totalPages);
+      }
+
+      function buildPagination(totalPages){
+        if(!paginationEl) return;
+        if(totalPages <= 1){
+          paginationEl.innerHTML='';
+          return;
         }
+        let html = '<nav class="inline-flex rounded-md shadow" aria-label="分页">';
+        html += `<button class="px-4 py-2 ${currentPage===1?'bg-white text-gray-300':'bg-white hover:bg-gray-50 text-gray-500'} border border-gray-300 rounded-l-md" data-page="prev" aria-label="上一页"><i class="fa fa-angle-left"></i></button>`;
+        for(let i=1;i<=totalPages;i++){
+          html += `<button class="px-4 py-2 ${i===currentPage?'bg-primary border-primary text-white':'bg-white border border-gray-300 text-gray-700 hover:bg-gray-50'} text-sm font-medium" data-page="${i}">${i}</button>`;
+        }
+        html += `<button class="px-4 py-2 ${currentPage===totalPages?'bg-white text-gray-300':'bg-white hover:bg-gray-50 text-gray-500'} border border-gray-300 rounded-r-md" data-page="next" aria-label="下一页"><i class="fa fa-angle-right"></i></button>`;
+        html += '</nav>';
+        paginationEl.innerHTML = html;
+        paginationEl.querySelectorAll('button[data-page]').forEach(btn=>{
+          btn.addEventListener('click', e => {
+            const val = btn.getAttribute('data-page');
+            const totalPagesNow = Math.ceil(filtered.length / perPage) || 1;
+            if(val === 'prev' && currentPage > 1){ currentPage--; }
+            else if(val === 'next' && currentPage < totalPagesNow){ currentPage++; }
+            else if(/^[0-9]+$/.test(val)){ currentPage = Number(val); }
+            render();
+          });
+        });
       }
 
       if(filterBtn) filterBtn.addEventListener('click', applyFilter);
-      if(clearBtn) clearBtn.addEventListener('click', function(){
-        if(lockSel) lockSel.value = 'all';
-        if(weightSel) weightSel.value = 'all';
-        if(industrySel) industrySel.value = 'all';
+      if(clearBtn) clearBtn.addEventListener('click', ()=>{
+        if(lockSel) lockSel.value='all';
+        if(weightSel) weightSel.value='all';
+        if(industrySel) industrySel.value='all';
         applyFilter();
       });
 
-      // 不自动在 select 改变时筛选，改为仅在点击“筛选”按钮时触发
-      // 移除自动触发的监听和页面加载时的自动调用，保证用户点击后才筛选
+      // 初始渲染
+      render();
     })();
   </script>
 
@@ -891,7 +1006,7 @@
       <div class="p-6">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
           <div>
-            <img src="https://picsum.photos/id/119/800/600" alt="BLOC1500 注塑机" class="w-full h-auto rounded-lg">
+            <img src="pics/adv-img-1.jpg" alt="BLOC1500 注塑机" class="w-full h-auto rounded-lg">
           </div>
           <div>
             <h4 class="text-xl font-semibold mb-4">产品简介</h4>
@@ -1560,9 +1675,8 @@
         <h2 class="text-[clamp(1.5rem,3vw,2.5rem)] font-bold text-secondary mb-4">联系方式</h2>
         <p class="text-gray-600 max-w-2xl mx-auto">欢迎随时与我们联系，我们将竭诚为您提供服务</p>
       </div>
-      
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        <!-- 联系信息 -->
+
+      <div class="grid grid-cols-1 gap-12">
         <div>
           <div class="bg-white rounded-lg shadow-md p-8 mb-8">
             <h3 class="text-2xl font-semibold mb-6">联系信息</h3>
@@ -1612,54 +1726,58 @@
               </li>
             </ul>
           </div>
-          
+
           <div class="bg-white rounded-lg shadow-md p-8">
             <h3 class="text-2xl font-semibold mb-6">关注我们</h3>
-            <p class="text-gray-600 mb-6">扫描下方二维码，关注博洛克官方微信公众号，获取最新产品信息和技术资讯</p>
-            <div class="flex items-center">
-              <div class="bg-light p-4 rounded-md mr-6">
-                <img src="https://picsum.photos/id/1/200/200" alt="微信公众号" class="w-48 h-48 object-cover">
+            <p class="text-gray-600 mb-6">扫描二维码或点击社交图标，快速与我们联系或获取最新资讯</p>
+            <div class="flex flex-col lg:flex-row gap-8">
+              <!-- 二维码区域：微信公众号 & WhatsApp -->
+              <div class="flex gap-8">
+                <div class="text-center">
+                  <div class="bg-light p-4 rounded-md inline-block">
+                    <img src="pics/wechat-qrcode.png" alt="微信公众号二维码" class="w-40 h-40 object-cover" loading="lazy">
+                  </div>
+                  <p class="mt-2 text-gray-700 font-medium">微信公众号</p>
+                </div>
+                <div class="text-center">
+                  <div class="bg-light p-4 rounded-md inline-block">
+                    <img src="pics/ewm-1.png" alt="WhatsApp 联系二维码" class="w-40 h-40 object-cover" loading="lazy">
+                  </div>
+                  <p class="mt-2 text-gray-700 font-medium">WhatsApp</p>
+                </div>
               </div>
-              <div>
-                <h4 class="font-medium mb-2">博洛克机械</h4>
-                <p class="text-gray-600 text-sm">官方微信公众号</p>
-                <div class="flex space-x-4 mt-4">
-                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
-                    <i class="fa fa-weixin"></i>
+              <!-- 社交媒体链接区域 -->
+              <div class="flex-1">
+                <h4 class="font-medium mb-4">社交媒体</h4>
+                <p class="text-gray-600 text-sm mb-4">点击图标跳转到我们的官方账号页面</p>
+                <div class="flex space-x-4 mt-2">
+                  <!-- WeChat 图标：提示用户使用左侧二维码 -->
+                  <button type="button" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center cursor-default relative group" aria-label="微信二维码" title="请使用左侧微信公众号二维码扫码">
+                    <i class="fa fa-weixin text-xl"></i>
+                  </button>
+                  <a href="https://www.youtube.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors" aria-label="YouTube" title="前往 YouTube">
+                    <i class="fa fa-youtube-play text-xl"></i>
                   </a>
-                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
-                    <i class="fa fa-weibo"></i>
+                  <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors" aria-label="Facebook" title="前往 Facebook">
+                    <i class="fa fa-facebook text-xl"></i>
                   </a>
-                  <a href="#" class="w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors">
-                    <i class="fa fa-youtube-play"></i>
+                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" class="w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center hover:bg-primary-light transition-colors" aria-label="LinkedIn" title="前往 LinkedIn">
+                    <i class="fa fa-linkedin text-xl"></i>
                   </a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        
-        <!-- 留言表单和地图 -->
-        <div>
-          <div class="bg-white rounded-lg shadow-md p-8 mb-8">
-            <h3 class="text-2xl font-semibold mb-6">在线留言</h3>
-            <form class="space-y-4">
-              <div>
-                <label class="block text-gray-700 mb-2" for="contact-name">姓名 <span class="text-red-500">*</span></label>
-                <input type="text" id="contact-name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名" required>
-              </div>
-              <div>
-                <label class="block text-gray-700 mb-2" for="contact-company">公司名称 <span class="text-red-500">*</span></label>
-                <input type="text" id="contact-company" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称" required>
-              </div>
-              <div>
-                <label class="block text-gray-700 mb-2" for="contact-phone">联系电话 <span class="text-red-500">*</span></label>
-                <input type="tel" id="contact-phone" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话" required>
-              </div>
-              <div>
-                <label class="block text-gray-700 mb-2" for="contact-email">电子邮箱</label>
-                <input type="email" id="contact-email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的电子邮箱">
-              </div>
-              <div>
-                <label class="block text-gray-700 mb-2" for="contact-type">咨询类型 <span class="text-red-500">*</span></label>
-                <select id="contact-type" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus
+      </div>
+    </div>
+  </section>
+
+  <footer class="py-8 bg-light">
+    <div class="container mx-auto px-4 text-center text-gray-500 text-sm">
+      © 2025 博洛克机械
+    </div>
+  </footer>
+
+</body>
+</html>
