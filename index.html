@@ -149,6 +149,39 @@
     </div>
   </section>
 
+  <!-- 表单提交脚本：使用 FormSubmit 返回 JSON，不跳转页面 -->
+  <script>
+    (function(){
+      const form = document.getElementById('consult-form');
+      const statusEl = document.getElementById('form-status');
+      if(!form || !statusEl) return;
+      form.addEventListener('submit', async (e)=>{
+        e.preventDefault();
+        statusEl.className = 'text-sm text-gray-600';
+        statusEl.textContent = '正在提交，请稍候…';
+        statusEl.classList.remove('hidden');
+        try{
+          const res = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+          });
+          if(res.ok){
+            form.reset();
+            statusEl.className = 'text-sm text-green-600';
+            statusEl.textContent = '提交成功！我们已收到您的咨询，会尽快联系您。';
+          }else{
+            const data = await res.json().catch(()=>({}));
+            throw new Error(data.error || '提交失败，请稍后再试。');
+          }
+        }catch(err){
+          statusEl.className = 'text-sm text-red-600';
+          statusEl.textContent = err.message || '网络异常，请稍后重试。';
+        }
+      });
+    })();
+  </script>
+
   <!-- 核心优势 -->
   <section class="py-16 bg-light">
     <div class="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -1575,26 +1608,31 @@
             
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
-                <form class="space-y-4">
+                <form id="consult-form" action="https://formsubmit.co/dadaist_chn@163.com" method="POST" class="space-y-4">
+                  <!-- FormSubmit 选项 -->
+                  <input type="hidden" name="_subject" value="网站在线咨询" />
+                  <input type="hidden" name="_template" value="box" />
+                  <input type="hidden" name="_captcha" value="false" />
+                  <input type="text" name="_honey" class="hidden" tabindex="-1" autocomplete="off" />
                   <div>
                     <label class="block text-gray-700 mb-2" for="name">姓名</label>
-                    <input type="text" id="name" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名">
+                    <input type="text" id="name" name="name" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的姓名">
                   </div>
                   <div>
                     <label class="block text-gray-700 mb-2" for="company">公司名称</label>
-                    <input type="text" id="company" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称">
+                    <input type="text" id="company" name="company" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的公司名称">
                   </div>
                   <div>
                     <label class="block text-gray-700 mb-2" for="phone">联系电话</label>
-                    <input type="tel" id="phone" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话">
+                    <input type="tel" id="phone" name="phone" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的联系电话">
                   </div>
                   <div>
                     <label class="block text-gray-700 mb-2" for="email">电子邮箱</label>
-                    <input type="email" id="email" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的电子邮箱">
+                    <input type="email" id="email" name="email" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请输入您的电子邮箱">
                   </div>
                   <div>
                     <label class="block text-gray-700 mb-2" for="product-type">相关产品</label>
-                    <select id="product-type" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
+                    <select id="product-type" name="productType" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
                       <option value="">请选择产品类型</option>
                       <option value="bloc1500">BLOC1500 注塑机</option>
                       <option value="bloc2300">BLOC2300 注塑机</option>
@@ -1606,8 +1644,9 @@
                   </div>
                   <div>
                     <label class="block text-gray-700 mb-2" for="message">咨询内容</label>
-                    <textarea id="message" rows="4" class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述您的问题或需求"></textarea>
+                    <textarea id="message" name="message" rows="4" required class="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent" placeholder="请详细描述您的问题或需求"></textarea>
                   </div>
+                  <div id="form-status" class="hidden text-sm"></div>
                   <button type="submit" class="w-full px-6 py-3 bg-primary text-white rounded-md hover:bg-primary-light transition-colors">
                     提交咨询
                   </button>
