@@ -1818,5 +1818,30 @@
     </div>
   </footer>
 
+  <!-- FAQ 折叠脚本：点击标题展开/收起答案 -->
+  <script>
+    (function(){
+      const root = document.getElementById('tech-faq');
+      if(!root) return;
+      const toggles = root.querySelectorAll('.faq-toggle');
+      toggles.forEach(btn => {
+        // 初始状态
+        btn.setAttribute('aria-expanded','false');
+        btn.addEventListener('click', () => {
+          const content = btn.nextElementSibling;
+          const icon = btn.querySelector('i');
+          if(!content) return;
+          const willShow = content.classList.contains('hidden');
+          content.classList.toggle('hidden');
+          btn.setAttribute('aria-expanded', willShow ? 'true' : 'false');
+          if(icon){
+            icon.classList.toggle('rotate-180', willShow);
+            icon.classList.add('transform');
+          }
+        });
+      });
+    })();
+  </script>
+
 </body>
 </html>
