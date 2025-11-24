@@ -32,23 +32,17 @@
   </script>
   
   <style type="text/tailwindcss">
-      function toggleMenu(){
-        if(menu.classList.contains('hidden')) open(); else close();
-      }
-      // 兼容移动端：click + touchend
-      toggle.addEventListener('click', function(e){ e.preventDefault(); toggleMenu(); });
-      toggle.addEventListener('touchend', function(e){ e.preventDefault(); toggleMenu(); }, {passive:false});
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
       }
       .text-shadow {
         text-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        a.addEventListener('touchend', function(){ setTimeout(close, 0); }, {passive:true});
       }
       .transition-transform {
         transition-property: transform;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
         transition-duration: 300ms;
-      // Esc 键关闭
-      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
       }
       .scrollbar-hide::-webkit-scrollbar {
         display: none;
@@ -1823,44 +1817,6 @@
       © 2025 博洛克机械
     </div>
   </footer>
-
-  <!-- 移动端导航展开脚本：控制 #menu-toggle / #mobile-menu -->
-  <script>
-    (function(){
-      var toggle = document.getElementById('menu-toggle');
-      var menu = document.getElementById('mobile-menu');
-      if(!toggle || !menu) return;
-      toggle.setAttribute('aria-controls','mobile-menu');
-      toggle.setAttribute('aria-expanded','false');
-
-      function open(){
-        menu.classList.remove('hidden');
-        document.body.classList.add('overflow-hidden');
-        toggle.setAttribute('aria-expanded','true');
-        toggle.innerHTML = '<i class="fa fa-times"></i>';
-      }
-      function close(){
-        menu.classList.add('hidden');
-        document.body.classList.remove('overflow-hidden');
-        toggle.setAttribute('aria-expanded','false');
-        toggle.innerHTML = '<i class="fa fa-bars"></i>';
-      }
-      function toggleMenu(){
-        if(menu.classList.contains('hidden')){ open(); } else { close(); }
-      }
-      toggle.addEventListener('click', function(e){ e.preventDefault(); toggleMenu(); });
-      toggle.addEventListener('touchend', function(e){ e.preventDefault(); toggleMenu(); }, {passive:false});
-      // 点击菜单链接后自动收起
-      Array.prototype.forEach.call(menu.querySelectorAll('a'), function(a){
-        a.addEventListener('click', close);
-        a.addEventListener('touchend', function(){ setTimeout(close, 0); }, {passive:true});
-      });
-      // 超过 md 断点自动关闭
-      window.addEventListener('resize', function(){ if(window.innerWidth >= 768) close(); });
-      // Esc 键关闭
-      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
-    })();
-  </script>
 
   <!-- FAQ 折叠脚本：点击标题展开/收起答案 -->
   <script>
